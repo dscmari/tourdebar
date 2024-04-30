@@ -1,39 +1,17 @@
 
 import { sql } from '@vercel/postgres';
+import Test from './components/Test'
 
-export default function Home() {
+export default async function ParentComponent() {
+    let pet = null;
 
-
-//   const addPet = async () => {
-//     try {
-//         await sql`
-//             INSERT INTO Pets (Name, Owner)
-//             VALUES ('sammyyyyy', 'tommyyyyyy');
-//         `;
-//         console.log('New pet added successfully.');
-//         let pets = await sql`SELECT * FROM Pets;`; // Assign the result to the pets variable
-//         console.log(pets)
-        
-//     } catch (error) {
-//         console.error('Error adding new pet:', error);
-//     }
-// };
-
-const logPets = async () => {
-     console.log("logPets loaded");
-     try {
-        let pets = await sql`SELECT * FROM Pets;`; // Assign the result to the pets variable
-        console.log(typeof(pets))
-        console.log(pets);
-         // Process or use the retrieved pets data here
-     } catch (error) {
-         console.error("Error retrieving pets:", error);
-    } };
-
-// You can then call the logPets function elsewhere in your code to populate the pets variable
-
-logPets()
-
+    try {
+        const result = await sql`SELECT * FROM Pets;`;
+        pet = result.rows[5].name;
+        console.log("First pet:", pet);
+    } catch (error) {
+        console.error("Error retrieving first pet:", error);
+    }
 
     return (
         <main className=" flex flex-col justify-center text-center text-white h-screen bg-black lg:w-1/2 lg:mx-auto lg:text-left">
@@ -57,6 +35,8 @@ logPets()
             <div>
                 <button className="p-4 border bg-white text-black">Add to test pet database</button>
                 <h1>test</h1>
+                <Test pet={pet}/>
+        
             </div>
         </main>
     );
