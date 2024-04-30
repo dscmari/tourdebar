@@ -34,9 +34,7 @@ export default async function ParentComponent() {
             </div>
             <div>
                 <button className="p-4 border bg-white text-black">Add to test pet database</button>
-                <h1>test</h1>
                 <Test pet={pet}/>
-        
             </div>
         </main>
     );

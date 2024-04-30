@@ -7,7 +7,6 @@
     }
 
     const Test: React.FC<TestProps> = ({ pet }) => {
-        console.log(pet)
         return <div>Pet: {pet}</div>;
     };
 
