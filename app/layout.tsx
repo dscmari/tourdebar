@@ -5,6 +5,7 @@ import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
 import NavMenu from "./components/NavMenu";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,12 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
           <SessionProvider session={session}>
-            <main>
+            <main className="relative h-screen">
               <NavMenu/>
               {children}
+              <div className="absolute w-full bottom-0">
+                <Footer/>
+              </div>
             </main>
           </SessionProvider>
       </body>

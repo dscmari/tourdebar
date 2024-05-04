@@ -1,27 +1,30 @@
-export default function ParentComponent() {
+import { getServerSession } from "next-auth";
+import Link from 'next/link'
 
-    return (
-        <main className=" flex flex-col justify-center text-center text-white h-screen bg-black lg:w-1/2 lg:mx-auto lg:text-left">
-            <h1 className="text-2xl font-bold p-4 mb-8 text-center">Tour de Bar</h1>
-            <div className="lg:ml-24">
-                    <h2 className="p-4 text-xl">Admin Log In</h2>
-                    <form action="">
-                        <div className="m-4 flex flex-col lg:flex-row justify-center lg:justify-start">
-                            <label htmlFor="username">Username</label>
-                            <input className="border m-2" type="text" id="username" name="username" required />
-                        </div>
-                        <div className="m-4 flex flex-col lg:flex-row justify-center lg:justify-start">
-                            <label htmlFor="password">Password</label>
-                            <input className="border m-2" type="password" id="password" name="password" required />
-                        </div>
-                        <div className="m-4">
-                            <button className="p-2 border" type="submit">Login</button>
-                        </div>
-                </form>
-            </div>
-            <div>
-                <button className="p-4 border bg-white text-black">Add to test pet database</button>
-            </div>
-        </main>
-    );
+export default async function Home() {
+  const session = await getServerSession();
+  const user = session?.user?.name
+
+  if(user){
+    return(
+        <div  className="flex flex-col items-center mt-32">
+                <p className="p-4 text-xl">Hi <span className="">{user}</span></p>
+                <p>TODO Introtext, Verweis auf Regeln (Link in Footer)</p>
+                <Link className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" href="/createTourdebar">Create TourDeBar</Link>
+
+                {/* show current tourdebar? */}
+                {/* 
+                 <Link href="#"></Link>
+                 */}
+               
+        </div>
+    )
+  }  
+
+  return (
+    <div className="flex flex-col items-center">
+        <h1 className="mt-40 mb-4 text-3xl font-bold">TourDeBar</h1>
+        <p className="m-4 text-xl">Sign in to create a new TourDeBar</p>
+    </div>
+  );
 }
