@@ -25,10 +25,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
           <SessionProvider session={session}>
-            <main className="">
+            <main>
               <NavMenu/>
               {children}
-              <div className="">
+              <div>
                 <Footer/>
               </div>
             </main>
