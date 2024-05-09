@@ -6,15 +6,6 @@ import DBTest from "../database/DBTest";
 
 export default function CreateRoute() {
 
-    class Stop{
-        name: string
-        neighborhood: string
-        constructor(name: string, neighborhood: string){
-            this.name = name
-            this.neighborhood = neighborhood
-        }
-    }
-
     const [inputFields, setInputFields] = useState([
         {
             name: "",
@@ -38,12 +29,24 @@ export default function CreateRoute() {
     const submit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
-        console.log(inputFields)
+        // console.log(inputFields)
 
-        inputFields.map((input) =>{
-            console.log(input.name)
+        // inputFields.map((input) =>{
+        //     console.log(input.name)
+        // })
+
+      
+
+    }
+
+    const addRoute = async () => {
+        console.log("call addRoute")
+        let res = await fetch("/api/add-route", {
+            method: "POST",
+            body: JSON.stringify({inputFields})
         })
     }
+   
 
 
 
@@ -102,6 +105,7 @@ export default function CreateRoute() {
                 onClick={() => setRenderRoute(!renderRoute)}>
                     Save Route
             </button>
+            <button onClick={() => {addRoute()}}>Route speichern</button>
             <div>
                 {renderRoute && <DBTest />}
             </div>
