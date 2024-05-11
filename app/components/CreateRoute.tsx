@@ -71,11 +71,11 @@ export default function CreateRoute() {
             <h1 className="underline text-xl">Current Stops</h1>
             {inputFields.map((input, index) => {
             return(
-            <div key={index} className="w-2/3 flex flex-col gap-2 bg-beer p-4 m-2 border-2 border-black rounded">
-                <p>Stop {index + 1}: {input.neighborhood}</p>
-                <p className="text-2xl text-center">{input.name}</p>
-                <p></p>
-            </div>
+                <div key={index} className="w-2/3 flex flex-col gap-2 bg-beer p-4 m-2 border-2 border-black rounded">
+                    <p>Stop {index + 1}: {input.neighborhood}</p>
+                    <p className="text-2xl text-center">{input.name}</p>
+                    <p></p>
+                </div>
             )
             })}
 
