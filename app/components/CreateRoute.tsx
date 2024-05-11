@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 import { ChangeEvent, useState} from "react"
-import DBTest from "../database/DBTest";
 
 
 export default function CreateRoute() {
@@ -12,8 +11,6 @@ export default function CreateRoute() {
             neighborhood: ""
         }
     ])
-
-    const [renderRoute, setRenderRoute] = useState(false)
   
     const handleFormChange = (index: number, event: ChangeEvent<HTMLInputElement>) => {
         let data = [...inputFields];
@@ -26,19 +23,6 @@ export default function CreateRoute() {
         setInputFields([...inputFields, newfield])
     }
 
-    const submit = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-
-        // console.log(inputFields)
-
-        // inputFields.map((input) =>{
-        //     console.log(input.name)
-        // })
-
-      
-
-    }
-
     const addRoute = async () => {
         console.log("call addRoute")
         let res = await fetch("/api/add-route", {
@@ -48,19 +32,10 @@ export default function CreateRoute() {
     }
    
 
-
-
-    // Increment the render count every time the component renders
-    const [renderCount, setRenderCount] = useState(0);
-    React.useEffect(() => {
-        setRenderCount(prevCount => prevCount + 1);
-    }, []);
-
     return(
         <div className="flex flex-col items-center">
-            <h1 className="bg-red-500">Rendercount: {renderCount}</h1>
             <h1 className="p-4 text-xl font-bold">Route stops</h1>
-            <form onSubmit={submit}>
+            <form>
                 {inputFields.map((input, index) => {
                     return(
                         <div key={index} className="m-4 flex flex-col items-center gap-2 border-solid border-2 ">
@@ -77,38 +52,39 @@ export default function CreateRoute() {
                                 placeholder='Neighborhood'
                                 value={input.neighborhood}
                                 onChange={event => handleFormChange(index, event)}
-                                className="mx-2 p-2 border border-2 rounded-lg"
+                                className="mx-2 mb-4 p-2 border border-2 rounded-lg"
                             />
-                            <button onClick={submit} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2 py-2.5 mb-2 dark:focus:ring-yellow-900">Save stop</button>
                         </div>
                     )
                 })}
             </form>
-            <button
+            {/* TODO: Limit to 10 stops via input fields length */}
+            {inputFields.length === 10 ? 
+                <p className="p-4 m-4 text-red-500">Maximum number of Stops is 10</p>
+            : 
+                <button
                 className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
                 onClick={addFields}>
                     Add stop
-            </button>
-             <br />
-             <h1>Deine Route</h1>
-             {inputFields.map((input, index) => {
-               return(
-                <div key={index}>
-                    <p>Station: {index}</p>
-                    <p>{input.name}</p>
-                    <p>{input.neighborhood}</p>
-                </div>
-               )
-             })}
+                </button>
+            }
+            <h1 className="underline text-xl">Current Stops</h1>
+            {inputFields.map((input, index) => {
+            return(
+            <div key={index} className="w-2/3 flex flex-col gap-2 bg-beer p-4 m-2 border-2 border-black rounded">
+                <p>Stop {index + 1}: {input.neighborhood}</p>
+                <p className="text-2xl text-center">{input.name}</p>
+                <p></p>
+            </div>
+            )
+            })}
+
             <button
                 className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
-                onClick={() => setRenderRoute(!renderRoute)}>
-                    Save Route
+                onClick={() => {addRoute()}}>
+                Save Stops
             </button>
-            <button onClick={() => {addRoute()}}>Route speichern</button>
-            <div>
-                {renderRoute && <DBTest />}
-            </div>
+
         </div>
     )
 }

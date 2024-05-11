@@ -2,7 +2,7 @@
 
 export default function Footer() {
     return(
-        <div className="text-center text-sm">
+        <div className="text-center text-sm mt-12 p-4 border-t-2 border-slate-300">
            <ul className="flex justify-center flex-wrap">
                 <li>Datenschutzeinstellungen ändern</li>
                 <li>Datenschutzerklärung</li>

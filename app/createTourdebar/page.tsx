@@ -1,6 +1,6 @@
 
 import CreateRoute from "../components/CreateRoute"
-import DBTest from "../database/DBTest"
+
 
 
 export default function CreateTourdebar() {
@@ -8,9 +8,7 @@ export default function CreateTourdebar() {
 
     return(
         <>
-            <h1>Create TourDeBar</h1>
-            <DBTest/>
-            <CreateRoute/>
+            <h1 className="py-4 my-4 text-xl text-center font-bold">Compose your own TourDeBar</h1>
         </>
        
     )
