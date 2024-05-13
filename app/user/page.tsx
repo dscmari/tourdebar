@@ -1,17 +1,15 @@
 import React from 'react'
 import DisplayRoute from "../components/DisplayRoute"
-import { QueryResult, QueryResultRow, sql } from '@vercel/postgres';
+import {sql } from '@vercel/postgres';
+import { useRouter } from 'next/router';
 
+type Stop = {
+    id: number
+    name: string
+    neighborhood: string
+}
 
 export default async function User() {
-
-    type Stop = {
-        id: number
-        name: string
-        neighborhood: string
-    }
-
-    const temp: string [] = []
 
     let route: Stop [] = []
 
@@ -19,7 +17,6 @@ export default async function User() {
         const sqlRoute = await sql`SELECT  * from Routes WHERE id=4`
        
         const row = sqlRoute.rows[0]
-        console.log("helloooooooooooooooooooooooooooo")
         for (const [key, value] of Object.entries(row)) {
             if(key != 'id' && value){
                 const stopId = parseInt(value); // Assuming the ID is an integer
@@ -28,7 +25,6 @@ export default async function User() {
                 route.push(stopRow)
             }
         }
-        console.log(route)
     }
     catch {
         console.log("error (catch block)")
