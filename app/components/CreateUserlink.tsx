@@ -12,7 +12,7 @@ export default function CreateUserlink({routeId}: Props) {
 
     const createURL = () => {
   
-        const url = `https://tourdebar.vercel.app/user?` + routeId;
+        const url = `https://tourdebar.vercel.app/route${routeId}`;
         //const devurl = `http://localhost:3000/route/${routeId}`;
 
         //setUrl(devurl)
