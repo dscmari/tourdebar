@@ -1,7 +1,6 @@
 import React from 'react'
 import DisplayRoute from "../components/DisplayRoute"
 import {sql } from '@vercel/postgres';
-import { useRouter } from 'next/router';
 
 type Stop = {
     id: number

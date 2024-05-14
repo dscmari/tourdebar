@@ -7,14 +7,15 @@ type Props = {
 
 export default function CreateUserlink({routeId}: Props) {
 
-    const [url, setUrl] = useState<string>("")
+    const [devurl, setUrl] = useState<string>("")
 
     const createURL = () => {
-        const token = Math.random().toString(36).substring(7);
-        console.log(token)
-        const url = `https://tourdebar.vercel.app/user?token=${token}` + routeId;
-        console.log(url)
-        setUrl(url)
+  
+        //const url = `https://tourdebar.vercel.app/user?` + routeId;
+        const devurl = `http://localhost:3000/route/${routeId}`;
+
+        console.log(devurl)
+        setUrl(devurl)
     }
   
     const handleclick = () => {
@@ -25,7 +26,7 @@ export default function CreateUserlink({routeId}: Props) {
         <div>
             <div>CreateUserlink</div>
             <button className='p-4 border-2 border-black' onClick={handleclick}>create url with token</button>
-            <p>{url}</p>
+            <p>{devurl}</p>
         </div>
        
     )

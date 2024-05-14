@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import { useRouter, useParams } from "next/navigation";
 
 
 interface Stop {
@@ -13,9 +12,6 @@ interface Props {
 }
 
 export default function DisplayRoute( {route} : Props) {
-
-    const params = useParams<{ tag: string; item: string }>()
-    console.log(params.tag)
 
     return (
         <div className='flex flex-col items-center'>
