@@ -1,9 +1,12 @@
 "use client"
 import React from "react";
 import { ChangeEvent, useState} from "react"
+import { useRouter } from 'next/navigation'
 
 
 export default function CreateRoute() {
+
+    const router = useRouter()
 
     const [inputFields, setInputFields] = useState([
         {
@@ -24,13 +27,14 @@ export default function CreateRoute() {
     }
 
     const addRoute = async () => {
-        console.log("call addRoute")
-        let res = await fetch("/api/add-route", {
+   
+        await fetch("/api/add-route", {
             method: "POST",
             body: JSON.stringify({inputFields})
         })
+        //refresh to update route id in parent component 
+        router.refresh()
     }
-   
 
     return(
         <div className="flex flex-col items-center">

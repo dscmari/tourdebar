@@ -8,7 +8,6 @@ export default async function CreateTourdebar() {
 
     const routeIdResult = await sql`SELECT * FROM Routes ORDER BY id DESC LIMIT 1`; // Select last entry
     const routeId: number = routeIdResult.rows[0]["id"]
-    console.log(typeof routeId)
 
     return(
         <>
