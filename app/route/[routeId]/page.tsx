@@ -28,7 +28,7 @@ export default async function page({params} : paramsType) {
   try {
     const sqlRoute = await sql`SELECT  * from routes WHERE id=${routeId}`
     const row = sqlRoute.rows[0]
-
+    
     for (const [key, value] of Object.entries(row)) {
         if(key === 'available_until'){
             const currentTimestamp = new Date();

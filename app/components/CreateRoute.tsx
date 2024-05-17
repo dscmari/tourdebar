@@ -84,7 +84,7 @@ export default function CreateRoute() {
             })}
 
             <button
-                className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
+                className="m-6 bg-white hover:bg-green-500 hover:text-white hover:border-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
                 onClick={() => {addRoute()}}>
                 Save Stops
             </button>
