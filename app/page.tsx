@@ -3,6 +3,9 @@ import Link from 'next/link'
 import NavMenu from "./components/NavMenu";
 
 export default async function Home() {
+
+    console.log("home loaded")
+
   const session = await getServerSession();
   const user = session?.user?.name
 
@@ -10,10 +13,11 @@ export default async function Home() {
       return(
           <div>
               <NavMenu/>
-              <div  className="flex flex-col items-center mt-32">      
+              <div className="flex flex-col items-center mt-32">      
                   <p className="p-4 text-xl">Hi <span className="">{user}</span></p>
                   <p>TODO Introtext, Verweis auf Regeln (Link in Footer)</p>
                   <Link className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" href="/createTourdebar">Create TourDeBar</Link>
+                  <Link className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" href="/addTeams">Add Teams</Link>
               </div>
           </div>
           

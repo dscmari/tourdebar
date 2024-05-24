@@ -9,8 +9,11 @@ type Props = {
 export default function SaveTourdebar({routeId}: Props) {
 
     const router = useRouter()
+
+    console.log(routeId)
  
     const addTourdebar = async () => {
+        console.log("add tourdebar called")
         await fetch("/api/add-tourdebar", {
             method: "POST",
             body: JSON.stringify({routeId})

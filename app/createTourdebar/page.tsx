@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from "next-auth";
 import NavMenu from "../components/NavMenu";
 import SaveTourdebarButton from "../components/buttons/SaveTourdebar";
+import CreateTeams from "../components/CreateTeams";
 
 
 
@@ -23,7 +24,7 @@ export default async function CreateTourdebar() {
     const tourIdResult = await sql`SELECT * FROM Tourdebars ORDER BY id DESC LIMIT 1`
     const tourId : number = tourIdResult.rows[0]["id"] 
 
-    
+    console.log(tourId)
   
 
     return(
@@ -33,8 +34,9 @@ export default async function CreateTourdebar() {
             <div className="py-4 border-y border-black">
                 <CreateRoute/>
             </div>
-            
-            <br />
+            <div className="py-4 border-y border-black">
+                <CreateTeams/>
+            </div>
             
             <SaveTourdebarButton routeId={routeId}/>
 
