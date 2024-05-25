@@ -1,5 +1,6 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 function AuthButton() {
   const { data: session } = useSession();
@@ -7,7 +8,7 @@ function AuthButton() {
   if (session) {
     return (
       <div className="nav-menu flex justify-between items-center">
-        <p className="m-6">{session?.user?.name}</p>
+        <p className="m-6"><Link href={`/`}>{session?.user?.name}</Link></p>
         <button onClick={() => signOut()} className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
             Sign out
         </button>

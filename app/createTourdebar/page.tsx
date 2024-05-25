@@ -34,10 +34,6 @@ export default async function CreateTourdebar() {
             <div className="py-4 border-y border-black">
                 <CreateRoute/>
             </div>
-            <div className="py-4 border-y border-black">
-                <CreateTeams/>
-            </div>
-            
             <SaveTourdebarButton routeId={routeId}/>
 
             <CreateUserlink tourId={tourId} />

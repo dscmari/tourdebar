@@ -22,8 +22,6 @@ export default async function page({params} : paramsType) {
     let id = true;
     let available = true;
 
-
-
     try{
         //Get tour
         const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
@@ -36,14 +34,7 @@ export default async function page({params} : paramsType) {
             const rowRoute = sqlRoute.rows[0]
 
             for (const [key, value] of Object.entries(rowRoute)) {
-            
-                if(key === 'available_until') {
-                    const currentTimestamp = new Date();
-                    const currentTimestampMs = currentTimestamp.getTime();
-                    const availableUntilTimestampMs = value.getTime();
-                    currentTimestampMs > availableUntilTimestampMs ? available = false : available = true
-                }
-                
+    
                 if(key !== 'id' && key !== 'created_at' && key !== 'available_until' && value) {
                     const stopId = parseInt(value); // Assuming the ID is an integer
                     const stopData = await sql`SELECT * FROM Stops WHERE id=${stopId}`;
@@ -61,15 +52,11 @@ export default async function page({params} : paramsType) {
     return (
         <div>
             <NavMenuUser tourId={tourId}/>
-            {id ? (
-                available ? (
-                    <DisplayRoute route={route} />
-                ) : (
-                    <h1 className='p-4 m-4'>Route not available</h1>
-                )
-            ) : (
+            {id ?
+                <DisplayRoute route={route} />
+            :
                 <h1 className='p-4 m-4'>Specified tour ID was not found in the dataset. Please try with a correct ID.</h1>
-            )}
+            }
         </div>
     )
 }

@@ -30,7 +30,7 @@ export default function BurgerMenu({tourId} : PropsType) {
             <div className={showMenu ? 'block' : 'hidden'}>
                 <ul className='flex flex-col items-end gap-4 mr-12 text-2xl py-4'>
                     <li><Link href={`/tourdebar/${tourId}/route`}>Route</Link></li>
-                    <li>Teams</li>
+                    <li><Link href={`/tourdebar/${tourId}/teams`}>Teams</Link></li>
                     <li>Spiele</li>
                     <li>Tabelle</li>
                     <li>Regeln</li>
