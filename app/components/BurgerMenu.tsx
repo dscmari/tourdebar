@@ -12,10 +12,9 @@ export default function BurgerMenu({tourId} : PropsType) {
     const [showMenu, setShowMenu] = useState(false)
 
     const toggleMenu = () => {
-        console.log("toggleMenuCalled")
         setShowMenu(!showMenu)
-        console.log(showMenu)
     }
+
     return (
         <div>
             <div className="block" onClick={toggleMenu}>

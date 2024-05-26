@@ -10,24 +10,34 @@ type paramsType = {
 }
 
 type Team = {
-  player_1: string,
-  player_2: string,
+  player_1: string
+  player_2: string
   player_3: string
 }
 
 export default async function page({params} : paramsType) {
 
     const {tourId} = params
-    const teams: Team[] = []
+    //check availability (TODO: there needs to be a better dry way)
+    const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
+    const rowTour = tourIdResult.rows[0]
+    const tourEnd = rowTour["available_until"]
+    const currentTime = new Date();
+    const currentTimeMs = currentTime.getTime();
+    const tourEndMs = tourEnd.getTime();
+    const available = currentTimeMs > tourEndMs ? false : true
+    
+    let teams: Team[] = []
+    let id = true
 
     try {
-      console.log("try")
+      console.log("try in teams/page")
       const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
       const rowTour = tourIdResult.rows[0]
-
+      console.log(rowTour)
       const teamlistId = rowTour["teamlist_id"]
-  
-
+      console.log(teamlistId)
+      console.log("try 2")
       const sqlTeamlist = await sql`SELECT  * from team_lists WHERE id=${teamlistId}`
       const rowTeamList = sqlTeamlist.rows[0]
 
@@ -44,12 +54,18 @@ export default async function page({params} : paramsType) {
         console.log("catch block ")
     }
 
+    console.log("teams array: ")
     console.log(teams)
 
     return (
         <div>
           <NavMenuUser tourId={tourId}/>
-          <DisplayTeams teams={teams}/>
+          {id && available ?
+              <DisplayTeams teams={teams}/>
+              :
+              <h1 className='p-4 m-4'>Specified tour ID was not found in the dataset. It might be expired. Please try with a correct ID.</h1>
+          }
+          
         </div>
     )
 }

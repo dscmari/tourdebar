@@ -11,6 +11,7 @@ type paramsType = {
 export default async function page({params} : paramsType) {
 
     const {tourId} = params
+    //check availability (TODO: there needs to be a better dry way)
     const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
     const rowTour = tourIdResult.rows[0]
     const tourEnd = rowTour["available_until"]

@@ -18,11 +18,11 @@ export default async function CreateTourdebar() {
         redirect('/');
     }
     
+    const tourIdResult = await sql`SELECT * FROM Tourdebars ORDER BY id DESC LIMIT 1`
+    const tourId : number = tourIdResult.rows[0]["id"]
+
     const routeIdResult = await sql`SELECT * FROM Routes ORDER BY id DESC LIMIT 1`; // Select last entry
     const routeId: number = routeIdResult.rows[0]["id"]
-
-    const tourIdResult = await sql`SELECT * FROM Tourdebars ORDER BY id DESC LIMIT 1`
-    const tourId : number = tourIdResult.rows[0]["id"] 
 
     console.log(tourId)
   

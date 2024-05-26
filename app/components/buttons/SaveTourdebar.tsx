@@ -10,7 +10,7 @@ export default function SaveTourdebar({routeId}: Props) {
 
     const router = useRouter()
 
-    console.log(routeId)
+    
  
     const addTourdebar = async () => {
         console.log("add tourdebar called")

@@ -32,5 +32,5 @@ export async function POST(request: Request) {
         console.log(error)
     }
 
-    return NextResponse.json({ teams }, { status: 200 });
+    return NextResponse.json({ status: 200 });
 }
