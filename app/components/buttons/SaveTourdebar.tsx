@@ -3,20 +3,24 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 
 type Props = {
-    routeId: number
+    tourdata : {
+        routeId : number,
+        gamelistId: number
+    }
 }
 
-export default function SaveTourdebar({routeId}: Props) {
+export default function SaveTourdebar({tourdata}: Props) {
 
     const router = useRouter()
 
-    
+    console.log("tourdata")
+    console.log(tourdata)
  
     const addTourdebar = async () => {
         console.log("add tourdebar called")
         await fetch("/api/add-tourdebar", {
             method: "POST",
-            body: JSON.stringify({routeId})
+            body: JSON.stringify({tourdata})
         })
         router.refresh()
     }

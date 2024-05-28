@@ -8,9 +8,9 @@ export default async function editTourdebar() {
 
   const session = await getServerSession();
     const user = session?.user?.name
-    if(!user){
-        redirect('/');
-    }
+    // if(!user){
+    //     redirect('/');
+    // }
 
 
   return (

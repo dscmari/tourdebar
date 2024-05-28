@@ -31,9 +31,6 @@ export default async function page({params} : paramsType) {
     let id = true;
 
     try{
-        //Get tour
-        const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
-        const rowTour = tourIdResult.rows[0]
         //Get route
         const routeId = rowTour["routes_id"]
         //check if route id exists in tourdebar row

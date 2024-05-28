@@ -24,14 +24,27 @@ export default async function CreateTourdebar() {
     //     redirect('/');
     // }
     
+    //determine latest tour
     const tourIdResult = await sql`SELECT * FROM Tourdebars ORDER BY id DESC LIMIT 1`
     const tourId : number = tourIdResult.rows[0]["id"]
 
+    //determine latest route
     const routeIdResult = await sql`SELECT * FROM Routes ORDER BY id DESC LIMIT 1`; // Select last entry
     const routeId: number = routeIdResult.rows[0]["id"]
 
+    //determine latest gamelist
+    const gamelistIdResult = await sql`SELECT * FROM Gamelists ORDER BY id DESC LIMIT 1`; // Select last entry
+    const gamelistId: number = gamelistIdResult.rows[0]["id"]
+
+    //pass all optional games to /createGames
     const gameOptionsResult = await sql`SELECT * from Games` 
     const gameOptions = gameOptionsResult.rows as Game[]
+
+    const tourdata = {
+        routeId: routeId,
+        gamelistId: gamelistId
+    }
+
 
     return(
         <>
@@ -43,7 +56,7 @@ export default async function CreateTourdebar() {
             <div className="py-4 border-y border-black">
                 <CreateGames gameOptions={gameOptions} />
             </div>
-            <SaveTourdebarButton routeId={routeId}/>
+            <SaveTourdebarButton tourdata={tourdata}/>
             <CreateUserlink tourId={tourId} />
          
         </>
