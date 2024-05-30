@@ -19,7 +19,7 @@ export default function BurgerMenu({tourId} : PropsType) {
         <div>
             <div className="block" onClick={toggleMenu}>
                 <div className="js-navbar-toggle flex items-center border-black hover:text-grey hover:border-grey">
-                    <div className="js-burgermenu w-9 h-7 relative m-12 transform rotate-0 transition ease-in-out duration-500 cursor-pointer">
+                    <div className="js-burgermenu w-9 h-7 relative m-12 mr-6 transform rotate-0 transition ease-in-out duration-500 cursor-pointer">
                         <span className="upper block absolute h-[3px] w-full bg-black rounded opacity-100 right-0 transform rotate-0 transition ease-in-out duration-250 top-0"></span>
                         <span className="middle block absolute h-[3px] w-full bg-black rounded opacity-100 right-0 transform rotate-0 ease-in-out duration-250 top-3"></span>
                         <span className="lower block absolute h-[3px] w-full bg-black rounded opacity-100 right-0 transform rotate-0 transition ease-in-out duration-250 top-6"></span>
@@ -27,7 +27,7 @@ export default function BurgerMenu({tourId} : PropsType) {
                 </div>
             </div>
             <div className={showMenu ? 'block' : 'hidden'}>
-                <ul className='flex flex-col items-end gap-4 mr-12 text-2xl py-4'>
+                <ul className='flex flex-col items-end gap-4 mr-6 text-2xl py-4'>
                     <li><Link href={`/tourdebar/${tourId}/route`}>Route</Link></li>
                     <li><Link href={`/tourdebar/${tourId}/teams`}>Teams</Link></li>
                     <li><Link href={`/tourdebar/${tourId}/games`}>Games</Link></li>
