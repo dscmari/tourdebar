@@ -1,5 +1,6 @@
 import React from 'react'
 import NavMenuUser from '../../components/NavMenuUser';
+import SaveUsername from '../../components/SaveUsername';
 import { sql } from '@vercel/postgres';
 
 type paramsType = {
@@ -25,6 +26,8 @@ export default async function page({params} : paramsType) {
           <div>
               <NavMenuUser tourId={tourId}/>
                   <p>Welcome to your Tour de Bar</p>
+                
+                  <SaveUsername/>
                   <p>Einleitungstext, Erklärung wie Menu funktioniert und was es alles gibt</p>
           </div>
         )

@@ -67,7 +67,7 @@ export default function CreateRoute() {
                 <p className="p-4 m-4 text-red-500">Maximum number of Stops is 10</p>
             : 
                 <button
-                className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
+                className="standard-btn" 
                 onClick={addFields}>
                     Add stop
                 </button>
@@ -84,7 +84,7 @@ export default function CreateRoute() {
             })}
 
             <button
-                className="m-6 bg-white hover:bg-green-500 hover:text-white hover:border-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
+                className="standard-btn" 
                 onClick={() => {addRoute()}}>
                 Save Stops
             </button>

@@ -12,3 +12,20 @@
     color: black;
 
 }
+/* className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"  */
+.standard-btn{
+    margin: 1.5rem;
+    background-color: white;
+    color: #1f2937;
+    font-weight: 600;           /* font-semibold */
+    padding-top: 0.5rem;        /* py-2 */
+    padding-bottom: 0.5rem;     /* py-2 */
+    padding-left: 1rem;         /* px-4 */
+    padding-right: 1rem;        /* px-4 */
+    border: 1px solid #cbd5e0;  /* border and border-gray-400 */
+    border-radius: 0.25rem;     /* rounded */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); 
+}
+.standard-btn:hover{
+    background-color: #f7fafc;
+}

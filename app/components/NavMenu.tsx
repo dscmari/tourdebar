@@ -9,7 +9,7 @@ function AuthButton() {
     return (
       <div className="nav-menu flex justify-between items-center">
         <p className="m-6"><Link href={`/`}>{session?.user?.name}</Link></p>
-        <button onClick={() => signOut()} className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+        <button onClick={() => signOut()} className="standard-btn">
             Sign out
         </button>
       </div>
@@ -18,7 +18,7 @@ function AuthButton() {
   return (
     <div className="nav-menu flex justify-between items-center">
         <p className="m-6">Not signed in</p>
-        <button onClick={() => signIn()} className="m-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+        <button onClick={() => signIn()} className="standard-btn">
                 Sign in
         </button>
     </div>

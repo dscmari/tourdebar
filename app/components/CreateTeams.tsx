@@ -52,7 +52,6 @@ export default function CreateTeams() {
     }
 
     const addTeams = async () => {
-  
         await fetch("/api/add-teams", {
             method: "POST",
             body: JSON.stringify({data})
@@ -60,7 +59,6 @@ export default function CreateTeams() {
         //refresh to update route id in parent component 
         router.refresh()
     }
-
 
     return (
         <div className="flex flex-col items-center">
@@ -78,7 +76,6 @@ export default function CreateTeams() {
                 />
             </div>
             <h1>Tourdebar ID: {tourdebarId}</h1>
-
 
             <form>
             {teams.map((input, index) => {
@@ -134,7 +131,7 @@ export default function CreateTeams() {
                 </button>
                 : 
                 <button
-                    className="m-6 bg-white hover:bg-green-500 hover:text-white hover:border-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
+                    className="standard-btn" 
                     onClick={() => {addTeams()}}>
                     Save Teams
                 </button>

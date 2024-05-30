@@ -69,7 +69,7 @@ export default function CreateGames ({gameOptions} : Props) {
           })}
         </form>
         <button
-            className="m-6 bg-white hover:bg-green-500 hover:text-white hover:border-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" 
+            className="standard-btn" 
             onClick={() => {saveGames()}}>
             Save Games
         </button>

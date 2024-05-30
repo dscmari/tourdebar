@@ -30,12 +30,14 @@ export default async function page({params} : paramsType) {
     let teams: Team[] = []
     let id = true
 
+    let teamlistId
+
     try {
       console.log("try in teams/page")
       const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
       const rowTour = tourIdResult.rows[0]
       console.log(rowTour)
-      const teamlistId = rowTour["teamlist_id"]
+      teamlistId = rowTour["teamlist_id"]
       console.log(teamlistId)
       console.log("try 2")
       const sqlTeamlist = await sql`SELECT  * from team_lists WHERE id=${teamlistId}`
@@ -60,6 +62,7 @@ export default async function page({params} : paramsType) {
     return (
         <div>
           <NavMenuUser tourId={tourId}/>
+          {teamlistId}
           {id && available ?
               <DisplayTeams teams={teams}/>
               :

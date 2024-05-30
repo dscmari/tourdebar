@@ -3,12 +3,8 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
 
-    
     const {data} = await request.json()
     const {teams, id} = data
-    console.log(data)
-    console.log(id)
-    console.log(teams)
     const teamIds: number[] = []
 
     try {
