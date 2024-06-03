@@ -31,7 +31,7 @@ export default function BurgerMenu({tourId} : PropsType) {
                     <li><Link href={`/tourdebar/${tourId}/route`}>Route</Link></li>
                     <li><Link href={`/tourdebar/${tourId}/teams`}>Teams</Link></li>
                     <li><Link href={`/tourdebar/${tourId}/games`}>Games</Link></li>
-                    <li>Tabelle</li>
+                    <li><Link href={`/tourdebar/${tourId}/ranking`}>Tabelle</Link></li>
                     <li>Regeln</li>
                 </ul>
             </div>

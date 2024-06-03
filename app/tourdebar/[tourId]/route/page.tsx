@@ -7,7 +7,7 @@ type paramsType = {
     params: {
       tourId: string
     }
-  }
+}
 
 type Stop = {
     id: number
