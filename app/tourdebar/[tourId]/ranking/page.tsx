@@ -12,13 +12,15 @@ type paramsType = {
 type Team = {
     player_1: string,
     player_2: string,
-    player_3: string
+    player_3: string,
+    score: number
 }
 
 export default async function page({params}: paramsType) {
 
     const {tourId} = params
     const teams: Team [] = []
+    
 
     try {
         const sqlTeamlistId = await sql`SElECT teamlist_id from Tourdebars WHERE id=${tourId}`
@@ -30,10 +32,13 @@ export default async function page({params}: paramsType) {
         for (const [key, value] of Object.entries(teamlist)) {
             if(key !== 'id' && value) {
                 const sqlTeam = await sql`SELECT * from Teams where id=${value}`
-                const team = sqlTeam.rows[0] as Team
+                const teamNoScore = sqlTeam.rows[0] as Team
+                const team = {...teamNoScore, "score": 0 }
                 teams.push(team)
             }
         }
+        console.log("try in ranking/page.tsx")
+        console.log(teams)
     }
     catch(error) {
         console.log("catch in ranking/page.tsx")
@@ -43,7 +48,7 @@ export default async function page({params}: paramsType) {
     return (
         <div>
             <NavMenuUser tourId={tourId}/>
-            <DisplayRanking teams={teams}/>
+            <DisplayRanking teamsProp={teams}/>
         </div>
     )
 }
