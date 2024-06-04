@@ -9,13 +9,23 @@ type Team = {
     score: number
 }
 
+type Game = {
+    id: number
+    name: string
+    description: string
+}
+
 type Props = {
-    teamsProp: Team[]
+    teamsProp: Team []
+    gamesProp: Game []
 }
 
 
 
-export default function DisplayRanking({teamsProp}: Props) {
+export default function DisplayRanking({teamsProp, gamesProp}: Props) {
+
+    const [games, setGames] = useState(gamesProp)
+
 
     const [teams, setTeams] = useState(teamsProp)
     const sortedTeams = teams.sort((a,b) => b.score - a.score)
@@ -48,7 +58,28 @@ export default function DisplayRanking({teamsProp}: Props) {
                 } )}
             </div>
             <div>
-                <h1>Abstimmung</h1>
+                {games.map((game, index) => {
+                    return (
+                        <div key={index} className='border border-2 bg-mint m-4 p-4'>
+                            <p>Stimmabgabe</p>
+                            <h1 className='text-center text-lg font-bold p-4'>{game.name}</h1>
+                            <div className='flex flex-col items-center gap-4'>
+                                {teams.map((team, index) => {
+                                    return(
+                                        <div key={index} className='flex gap-2'>
+                                            <button className='standard-btn' onClick={() => increaseScore(index)}>
+                                                <span className='p-4'>{team.player_1}</span>
+                                                <span className='p-4'>{team.player_2}</span>
+                                            </button>
+                                        </div>
+                                    )
+                                })} 
+                            </div>
+             
+                        </div>
+                    )
+                })}
+                 
                 
             </div>
           
