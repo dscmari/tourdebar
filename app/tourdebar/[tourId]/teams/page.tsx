@@ -2,6 +2,7 @@ import React from 'react'
 import NavMenuUser from '../../../components/NavMenuUser'
 import DisplayTeams from '../../../components/DisplayTeams'
 import { sql } from '@vercel/postgres'
+import { revalidateTag } from 'next/cache';
 
 type paramsType = {
     params: {
@@ -19,7 +20,9 @@ export default async function page({params} : paramsType) {
 
     const {tourId} = params
     //check availability (TODO: there needs to be a better dry way)
-    const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
+    console.log("revalidateTag called")
+    revalidateTag('tourdebars'); //empty cache for tourdebars
+    const tourIdResult = await sql`SELECT * FROM tourdebars WHERE id=${tourId}`
     const rowTour = tourIdResult.rows[0]
     const tourEnd = rowTour["available_until"]
     const currentTime = new Date();
@@ -34,10 +37,12 @@ export default async function page({params} : paramsType) {
 
     try {
       console.log("try in teams/page")
-      const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}`
+      
+      const tourIdResult = await sql`SELECT * FROM Tourdebars WHERE id=${tourId}` //seems to use a cache as the original null value that was inserted while creating tourdebal table is fetched
       const rowTour = tourIdResult.rows[0]
       console.log(rowTour)
       teamlistId = rowTour["teamlist_id"]
+      console.log("teamlistId:")
       console.log(teamlistId)
       console.log("try 2")
       const sqlTeamlist = await sql`SELECT  * from team_lists WHERE id=${teamlistId}`

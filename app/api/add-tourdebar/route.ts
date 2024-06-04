@@ -5,7 +5,7 @@ export async function POST(request:Request) {
 
     const {tourdata} = await request.json()
     const {routeId, gamelistId} = tourdata
-    const teamlistId = 69
+    const teamlistId = null
     console.log(routeId)
     console.log()
 
